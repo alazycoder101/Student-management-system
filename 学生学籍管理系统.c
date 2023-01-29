@@ -1,8 +1,12 @@
 ﻿#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#ifdef __linux__
+#include <curses.h>
+#elif defined(_WIN32) || defined(_WIN64)
 #include<conio.h>
 #include<windows.h>
+#endif
 #define N 101    //最大学生数+1
 #define M 6      //课程个数+1
 #define maxn 21  //char数组最大长度
@@ -71,7 +75,11 @@ int main()
         {
             case 0:
                 printf("正在退出...");
+#ifdef __linux__
+                sleep(2);
+#elif defined(_WIN32) || defined(_WIN64)
                 Sleep(2);
+#endif
                 return 0;
             case 1:
                 AddStuInfo();
